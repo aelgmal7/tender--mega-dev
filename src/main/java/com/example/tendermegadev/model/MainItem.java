@@ -26,5 +26,9 @@ public class MainItem {
             generator = "main_item_sequence"
     )
     private Long mainItemId;
+    @NonNull
     private  String mainItemName;
+    private String desc;
+    private String unit;
+
 }

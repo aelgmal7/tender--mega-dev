@@ -34,6 +34,12 @@ public class PayloadUtil {
         if(mainItem.getMainItemName() == null || mainItem.getMainItemName() == ""){
             valid.append("MainItem name, ");
         }
+        if(mainItem.getUnit() == null || mainItem.getUnit() == ""){
+            valid.append("MainItem unit, ");
+        }
+        if(mainItem.getDesc() == null || mainItem.getDesc() == ""){
+            valid.append("MainItem desc, ");
+        }
 
         if(valid.length() > 0){
             return valid.append("required");
