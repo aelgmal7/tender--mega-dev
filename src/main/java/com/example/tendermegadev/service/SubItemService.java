@@ -36,6 +36,7 @@ public class SubItemService {
         if(stringBuilder !=null) {
             throw  new BadRequestException(stringBuilder.toString());
         } else {
+            String remark = subItemPass.getRemark() != null  ? subItemPass.getRemark() :  "";
            MainItem mainItem= mainItemRepository.findByMainItemName(subItemPass.getMainItemName());
            SubItem subItem = SubItem.builder()
                     .subItemName(subItemPass.getSubItemName())
@@ -43,6 +44,7 @@ public class SubItemService {
                     .desc(subItemPass.getDesc())
                     .unit(subItemPass.getUnit())
                     .mainItem(mainItem)
+                   .remark(remark)
                     .build();
            return subItemRepository.save(subItem);
         }

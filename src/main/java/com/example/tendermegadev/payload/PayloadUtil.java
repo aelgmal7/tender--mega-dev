@@ -1,8 +1,11 @@
 package com.example.tendermegadev.payload;
 
 import com.example.tendermegadev.model.MainItem;
+import com.example.tendermegadev.model.QuantityPrice;
 import com.example.tendermegadev.model.SubItemPass;
 import org.springframework.http.HttpStatus;
+
+import java.util.List;
 
 public class PayloadUtil {
 
@@ -62,6 +65,24 @@ public class PayloadUtil {
             valid.append("MainItem desc, ");
         }
 
+        if(valid.length() > 0){
+            return valid.append("required");
+        }
+        return null;
+    }
+    public static  StringBuilder validateQuantityPriceParameter(List<QuantityPrice> quantityPriceList) {
+        StringBuilder valid = new StringBuilder();
+        quantityPriceList.stream().forEach(q -> {
+
+
+            if(q.getQuantity() == null || String.valueOf(q.getQuantity()) == ""){
+                valid.append("subItem quantity, ");
+            }
+            if(q.getSubItemName() == null || q.getSubItemName() == ""){
+                valid.append("subItem name, ");
+            }
+
+        });
         if(valid.length() > 0){
             return valid.append("required");
         }

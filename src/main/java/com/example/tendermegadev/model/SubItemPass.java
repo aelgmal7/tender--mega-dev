@@ -17,4 +17,6 @@ public class SubItemPass {
     private String unit;
     private String desc;
     private String mainItemName;
+    private String remark;
+
 }

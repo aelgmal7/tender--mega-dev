@@ -42,4 +42,6 @@ public class SubItem {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @NonNull
     private MainItem mainItem;
+    private String remark;
+
 }

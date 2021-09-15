@@ -30,5 +30,6 @@ public class MainItem {
     private  String mainItemName;
     private String desc;
     private String unit;
+    private String remark;
 
 }

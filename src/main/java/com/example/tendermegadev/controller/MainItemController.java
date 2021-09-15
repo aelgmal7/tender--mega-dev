@@ -2,6 +2,7 @@ package com.example.tendermegadev.controller;
 
 import com.example.tendermegadev.exception.BadRequestException;
 import com.example.tendermegadev.model.MainItem;
+import com.example.tendermegadev.model.QuantityPrice;
 import com.example.tendermegadev.payload.PayloadUtil;
 import com.example.tendermegadev.payload.ReturnedResult;
 import com.example.tendermegadev.service.MainItemService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/mainItem")
@@ -42,6 +45,17 @@ public class MainItemController {
         return ResponseEntity.status(status).body(result);
       }
     }
+    @GetMapping("/totalprice")
+    public ResponseEntity<ReturnedResult> getMainItemTotalPrice(@RequestBody List<QuantityPrice> quantityPriceList){
+        ReturnedResult result =null;
+        try {
+            result = PayloadUtil.fillResult(HttpStatus.OK,true,mainItemService.calculateMainItemTotalPrice(quantityPriceList));
+            return null;
+        } catch (Exception e) {
+            return null;
 
+        }
+
+    }
 
 }
