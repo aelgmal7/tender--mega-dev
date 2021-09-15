@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface MainItemRepository extends JpaRepository<MainItem,Long> {
     MainItem findByMainItemName(String name);
     boolean existsMainItemByMainItemName(String name);
+
 }

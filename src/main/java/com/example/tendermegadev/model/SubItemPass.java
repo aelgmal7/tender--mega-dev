@@ -11,8 +11,10 @@ import lombok.*;
 @ToString
 @Builder
 public class SubItemPass {
-    private Long subItemId;
+    @NonNull
     private String subItemName;
     private Float price;
-
+    private String unit;
+    private String desc;
+    private String mainItemName;
 }

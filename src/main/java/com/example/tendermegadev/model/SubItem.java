@@ -26,8 +26,11 @@ public class SubItem {
             generator = "sub_item_sequence"
     )
     private Long subItemId;
+    @NonNull
     private String subItemName;
     private Float price;
+    private String unit;
+    private String desc;
     @ManyToOne(
             cascade =CascadeType.MERGE,
             fetch = FetchType.LAZY

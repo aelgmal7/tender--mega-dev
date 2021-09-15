@@ -28,6 +28,27 @@ public class PayloadUtil {
         }
         return null;
     }
+    public static StringBuilder validateSubItemPassParameters(SubItemPass subItemPass){
+        StringBuilder valid = new StringBuilder();
+        if(subItemPass.getSubItemName() == null || subItemPass.getSubItemName() == ""){
+            valid.append("SubItem name, ");
+        }
+        if(subItemPass.getPrice() == null || String.valueOf(subItemPass.getPrice()) == ""){
+            valid.append("SubItem price, ");
+        }
+        if(subItemPass.getDesc() == null || String.valueOf(subItemPass.getDesc()) == ""){
+            valid.append("SubItem desc, ");
+        }if(subItemPass.getUnit() == null || String.valueOf(subItemPass.getUnit()) == ""){
+            valid.append("SubItem unit, ");
+        }if(subItemPass.getMainItemName() == null || String.valueOf(subItemPass.getMainItemName()) == ""){
+            valid.append("main item name, ");
+        }
+
+        if(valid.length() > 0){
+            return valid.append("required");
+        }
+        return null;
+    }
 
     public static StringBuilder validateMainItemParameters(MainItem mainItem){
         StringBuilder valid = new StringBuilder();

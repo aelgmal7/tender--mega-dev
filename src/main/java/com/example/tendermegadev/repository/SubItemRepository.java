@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface SubItemRepository extends JpaRepository<SubItem,Long> {
     List<SubItem> findAllByMainItemMainItemId(Long id);
+//    boolean existsSubItemBySubItemNameExistsMainItemMainItemName(String subName,String MainName );
+//    boolean existsBySubItemNameExistsAndMainItem_MainItemName(String subname,String mainName);
+    boolean existsBySubItemNameAndMainItem_MainItemName(String subName,String mainName);
+
 }
