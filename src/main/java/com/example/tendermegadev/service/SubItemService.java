@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubItemService {
@@ -50,4 +51,27 @@ public class SubItemService {
         }
 
     }
+
+    public SubItem getSubItem(String subItemName ,String mainIemName) throws Exception {
+        SubItem subItem =null;
+        Optional<SubItem> subItemTemp = subItemRepository.findSubItemByMainItem_MainItemNameAndSubItemName(mainIemName,subItemName);
+        MainItem mainItem = mainItemRepository.findByMainItemName(mainIemName);
+        if (subItemTemp.isPresent())
+        {
+            return subItemTemp.get();
+        }
+       else  {
+                  SubItem temp = subItemRepository.findTopBySubItemName(subItemName);
+                   SubItemPass subItemPass = SubItemPass.builder()
+                           .subItemName(temp.getSubItemName())
+                           .price(temp.getPrice())
+                           .unit(temp.getUnit())
+                           .remark(temp.getRemark())
+                           .desc(temp.getDesc())
+                           .mainItemName(mainItem.getMainItemName())
+                           .build();
+                   subItem = addNewSubItem(subItemPass);
+                   return subItem;
+               }
+           }
 }

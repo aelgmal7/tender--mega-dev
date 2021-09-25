@@ -74,7 +74,7 @@ public class PayloadUtil {
         StringBuilder valid = new StringBuilder();
         quantityPriceList.stream().forEach(q -> {
 
-
+            //System.out.println(q);
             if(q.getQuantity() == null || String.valueOf(q.getQuantity()) == ""){
                 valid.append("subItem quantity, ");
             }

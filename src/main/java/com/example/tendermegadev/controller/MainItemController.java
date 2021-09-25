@@ -45,14 +45,20 @@ public class MainItemController {
         return ResponseEntity.status(status).body(result);
       }
     }
-    @GetMapping("/totalprice")
-    public ResponseEntity<ReturnedResult> getMainItemTotalPrice(@RequestBody List<QuantityPrice> quantityPriceList){
+    @GetMapping("/totalprice/{mainItemName}")
+    public ResponseEntity<ReturnedResult> getMainItemTotalPrice(@RequestBody List<QuantityPrice> quantityPriceList,
+                                                                @PathVariable("mainItemName") String mainItemName
+                                                                ){
+        System.out.println(quantityPriceList + mainItemName);
         ReturnedResult result =null;
         try {
-            result = PayloadUtil.fillResult(HttpStatus.OK,true,mainItemService.calculateMainItemTotalPrice(quantityPriceList));
-            return null;
+            result = PayloadUtil.fillResult(HttpStatus.OK,true,mainItemService.calculateMainItemTotalPrice(quantityPriceList,mainItemName));
+            return ResponseEntity.status(HttpStatus.OK).body(result);
         } catch (Exception e) {
-            return null;
+            HttpStatus status = e instanceof BadRequestException ? HttpStatus.INTERNAL_SERVER_ERROR : HttpStatus.ALREADY_REPORTED;
+            result = PayloadUtil.fillResult(status, false,
+                    e.getMessage());
+            return ResponseEntity.status(status).body(result);
 
         }
 

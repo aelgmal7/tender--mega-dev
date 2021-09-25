@@ -5,11 +5,9 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @ToString
 @Builder
 public class QuantityPrice {
-    private Integer Quantity;
+    private Float quantity;
     private String subItemName;
 }
