@@ -7,6 +7,7 @@ import com.example.tendermegadev.model.SubItem;
 import com.example.tendermegadev.payload.PayloadUtil;
 import com.example.tendermegadev.repository.MainItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class MainItemService {
     @Autowired
     private SubItemService subItemService;
     private float totalPrice;
+    @Value("${overhead}")
+    private Double overhead;
 
     //get all main items
     public List<MainItem> getAllMainItems(){
@@ -65,7 +68,7 @@ public class MainItemService {
                 e.printStackTrace();
             }
         });
-        finalTotalPrice = totalPrice / 0.7 ;
+        finalTotalPrice = totalPrice / overhead ;
         return finalTotalPrice;
     }
 
